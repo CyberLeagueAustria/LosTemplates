@@ -42,6 +42,7 @@
             coreutils
             bash
             patched_podman
+            yq
             (writeShellScriptBin "docker" ''
               exec podman "$@"
             '')
