@@ -19,6 +19,21 @@ versions:
 		fi \
 	done
 
+create-patch:
+	@mkdir -p patches
+	@echo -e "\e[1;34m[+] Creating and splitting patch from latest commit (excluding patches/)...\e[0m"
+	@git diff HEAD^ HEAD -- . ':(exclude)patches/' | awk '\
+		/^diff --git a\// { \
+			if (out) close(out); \
+			fname = $$3; \
+			sub(/^a\//, "", fname); \
+			gsub(/\//, "_", fname); \
+			out = "patches/" fname ".patch"; \
+		} \
+		{ if (out) print >> out } \
+	'
+	@echo -e "\e[1;32m[+] Individual patch files saved in patches/\e[0m"
+
 PATCH:=./name.patch
 patch:
 	@if [ -f ${PATCH} ]; then \
@@ -31,6 +46,16 @@ patch:
 	else \
 		echo -e "\e[1;31m[+] ${PATCH} file does not exist"; \
 	fi
+
+patch-all:
+	@for patchfile in patches/*.patch; do \
+		for f in $(wildcard */); do \
+			if [[ -d "$$f" && -f "$$f/Makefile" ]]; then \
+				echo -e "\e[1;35m[+] Patching $$f with $$patchfile\e[0m"; \
+				patch -d $$f --backup-if-mismatch -p2 < "$$patchfile"; \
+			fi \
+		done \
+	done
 
 test:
 	@for DIR_NAME in $(wildcard */); do \

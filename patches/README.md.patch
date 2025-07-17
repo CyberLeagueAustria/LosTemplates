@@ -1,0 +1,67 @@
+diff --git a/README.md b/README.md
+index 49b3bba..a390c25 100644
+--- a/README.md
++++ b/README.md
+@@ -1,4 +1,9 @@
+-# LosTemplates - CTF Challenge Templates
++# CyberLeague Challenge Templates
++
++These templates are intended to facilitate the development of challenges for
++the CyberLeagueAustria. This templates forked from LosTemplates by [LosFuzzys](https://github.com/LosFuzzys).
++
++> **Disclaimer:** While most of the features are working as expected in LosTemplates, we only use a subset of them.
+ 
+ Preconfigured CTF challenge templates with sane defaults and an homogeneous
+ interface. Instanced web, instanced qemu+ssh, jailed pwn, sagemath, and much
+@@ -22,7 +27,6 @@ limits? Quickly ssh into a VPS and run `make deploy-docker`. Problems? Run
+ `make HOST=0.0.0.0`. Your infrastructure team will have an easier time fixing
+ Kubernetes.
+ 
+-Powered by [LosFuzzys](https://losfuzzys.net).
+ 
+ ## Versions
+ 
+@@ -59,13 +63,12 @@ You can check for the latest versions within a script [here](https://raw.githubu
+ 
+ ### Challenge Author
+ 
+-Install `docker`, `bash`, `make`, GNU `envsubst`, GNU/BSD `tar`, GNU `coreutils`
+-and `parallel`.
++Install `docker`, `bash`, `make`, GNU `envsubst`, GNU/BSD `tar`, GNU `coreutils`, [YQ](https://github.com/mikefarah/yq) and `parallel`.
+ 
+ **Ubuntu**:
+ ```sh
+ # Ubuntu 24.04
+-sudo apt install bash make gettext tar coreutils parallel
++sudo apt install bash make gettext tar coreutils parallel yq
+ # Install podman or docker at your choice
+ sudo apt install podman podman-docker
+ ```
+@@ -80,7 +83,7 @@ sudo dnf install podman podman-docker
+ 
+ **Arch**:
+ ```sh
+-sudo pacman -S bash make gettext tar coreutils parallel
++sudo pacman -S bash make gettext tar coreutils parallel yq
+ # Install podman or docker at your choice
+ sudo pacman -S docker
+ # If you prefer rootless docker, install it from AUR
+@@ -96,7 +99,7 @@ nix develop
+ 
+ ### Players
+ 
+-For Linux: `docker`.
++For Linux: `docker`, `tar`, [snicat](https://github.com/CTFd/snicat) and a linux shell.
+ 
+ For Windows: `docker` (WSL2 backend) and `tar` support.
+ 
+@@ -107,6 +110,9 @@ template folder. This `Makefile` holds metadata configuration that authors can
+ change. The name of the challenge will be the name of the folder holding the
+ `Makefile` (by default).
+ 
++> **Note:** CyberLeague uses a `Manifest.yaml` file in addition to the `Makefile`. The configuration for the challenge is then read from the Manifest.
++
++
+ Files in `challenge/` hold the main challenge logic. `challenge/flag.txt`
+ contains the flag. `challenge/Dockerfile` runs the challenge container and
+ `challenge/entrypoint.sh` contains the entrypoint of the container. For

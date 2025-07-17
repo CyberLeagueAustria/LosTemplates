@@ -1,0 +1,11 @@
+diff --git a/offline/deployment/ctf-citadel.conf.template b/offline/deployment/ctf-citadel.conf.template
+new file mode 100644
+index 0000000..70f8d79
+--- /dev/null
++++ b/offline/deployment/ctf-citadel.conf.template
+@@ -0,0 +1,4 @@
++[Challenge]
++id = ${INDEX}
++title = "${FULLNAME}"
++description = ${DESC}
+\ No newline at end of file

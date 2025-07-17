@@ -1,0 +1,41 @@
+diff --git a/solidity-nojail-debian11/solution/sources/Challenge.sol b/solidity-nojail-debian11/solution/sources/Challenge.sol
+deleted file mode 100644
+index d73e785..0000000
+--- a/solidity-nojail-debian11/solution/sources/Challenge.sol
++++ /dev/null
+@@ -1,26 +0,0 @@
+-// SPDX-License-Identifier: MIT
+-pragma solidity ^0.8.18;
+-
+-contract ChallengeContract
+-{
+-    address owner;
+-    mapping(address => uint) public balances;
+-
+-    constructor()
+-    {
+-        owner = msg.sender;
+-    }
+-
+-    //This is the function you need to call to buy tokens
+-
+-    function buy() public payable
+-    {
+-        _mint(msg.value, msg.sender);
+-    }
+-    
+-    //Internal functions (These shouldn't interest you)
+-    function _mint(uint256 amount, address target) internal
+-    {
+-        balances[target] += amount;
+-    }
+-}
+\ No newline at end of file
+diff --git a/solidity-nojail-debian11/solution/sources/Challenge.sol b/solidity-nojail-debian11/solution/sources/Challenge.sol
+new file mode 120000
+index 0000000..0eff9b0
+--- /dev/null
++++ b/solidity-nojail-debian11/solution/sources/Challenge.sol
+@@ -0,0 +1 @@
++../../challenge/Challenge.sol
+\ No newline at end of file

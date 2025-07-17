@@ -1,0 +1,4 @@
+[Challenge]
+id = ${INDEX}
+title = "${FULLNAME}"
+description = ${DESC}
