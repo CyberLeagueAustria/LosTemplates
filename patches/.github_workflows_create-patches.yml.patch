@@ -47,3 +47,23 @@ index 0000000..3f8c07b
 +        with:
 +          name: split-patches
 +          path: patches/
+diff --git a/.github/workflows/create-patches.yml b/.github/workflows/create-patches.yml
+index 3f8c07b..ca1b632 100644
+--- a/.github/workflows/create-patches.yml
++++ b/.github/workflows/create-patches.yml
+@@ -2,7 +2,7 @@ name: Create Patches
+ 
+ on:
+   push:
+-    branches: [ "main" ]
++    branches: [ "cla" ]
+ 
+ jobs:
+   generate-patches:
+@@ -39,5 +39,5 @@ jobs:
+       - name: Upload patch files as artifact
+         uses: actions/upload-artifact@v4
+         with:
+-          name: split-patches
++          name: patches
+           path: patches/
