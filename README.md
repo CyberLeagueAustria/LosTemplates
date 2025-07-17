@@ -76,7 +76,7 @@ sudo apt install podman podman-docker
 **Fedora**:
 ```sh
 # Fedora 42
-sudo dnf install bash make gettext-envsubst tar coreutils parallel
+sudo dnf install bash make gettext-envsubst tar coreutils parallel yq
 # Install podman or docker at your choice
 sudo dnf install podman podman-docker
 ```
