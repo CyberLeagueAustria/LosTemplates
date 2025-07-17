@@ -196,3 +196,102 @@ index f649fc6..0089775 100644
 +- [ ] I would like to be asked whether my challenge may be used in a CTF not mentioned above
 +- [ ] I do not want my challenge to be used in a CTF not mentioned above
 +- [ ] I don't really care, please just use it and mention me as author
+diff --git a/pwn-qemu-kernel/README.md b/pwn-qemu-kernel/README.md
+index f649fc6..0089775 100644
+--- a/pwn-qemu-kernel/README.md
++++ b/pwn-qemu-kernel/README.md
+@@ -1,48 +1,63 @@
+-# pwn-qemu-kernel template
++# Challenge
+ 
+-## TLDR
++## Challenge
+ 
+-- You get an SSH connection to a qemu machine
+-- You have an unprivileged user shell
+-- `/flag.txt` is owned by root
++**Description**
++<!--
++Please describe your challenge in 2-3 lines
++-->
+ 
+-Everything runs in qemu, so you can tweak the kernel or add custom modules for
+-the privilege escalation.
++**Difficulty**: <!--Please estimate the difficulty of the challenge EASY/MEDIUM/HARD-->
+ 
+-## Buildroot & Kernel
+ 
+-You have to manually precompile them. Building them is too complex for including
+-it in the template logic.
++**Deterministic Flags**:
++<!--
++Please let us know if your challenge expects a specific flag.
++This has to be specified as CTFCitadel randomizes flags
++-->
++My challenge:
++- [ ] expects a deterministic flag
++- [ ] works with a randomly-generated flag (the flag is accessible via `os.environ.get("FLAG")`)
+ 
+-You have makefiles available that pre-do most of the work.
+ 
+-- The rootfs has to be in `qcow2` format, by default we use buildroot to build it.
+-- The kernel is taken from `bzImage`. Default is 6.10.2
+-- A custom module in `challenge/module/module.ko` is loaded at startup
++**Special Infrastructure needs**:
++<!--
++If your challenge has special infrastructure-needs (e.g. min. 1GB RAM) please
++let us know here
++-->
+ 
+-## Before the CTF
++**Other comments**:
++<!--
++This place is to let us know about other stuff
++-->
+ 
+-### Port range
+ 
+-Increase the range:
++### Allowed usage
+ 
+-```sh
+-export PUBPORTSTART  = 20000
+-export PUBPORTEND    = 20035
+-```
++Please let us know how you allow this challenge to be used.
++<!-- These are somehow required as these are the main events the challenge is
++build for-->
++- [x] We are allowed to use this challenge during TopHack  
++- [x] We are allowed to use this challenge during KaindorfCTF  
++- [x] We are allowed to use this challenge during CyberLeage School CTF  
+ 
+-as every port is a seat for a player.
+ 
+-Making it very big doesn't work in docker, as it spawns a process per forwarded
+-port. Podman allocates it on-request. Kubernetes works.
++#### Usage in training ctfs
++If you do not allow us to use your challenge in a specific CTF, we'll respect that.
++- [ ] We are allowed to use this challenge as part of the CyberLeage 24/7
++- [ ] We are allowed to use this challenge as part of the Grazer Linuxtage CTF or as part of a CTF Workshop at the Grazer Linuxtage
++- [ ] We are allowed to use this challenge as part of the trainings
+ 
+-So for testing, keep the range low. For deployment increase it.
++#### Usage at onsite events
++In the past, challenge authors did unfortunately not get access to these event by
++just being challenge creators :/
++- [ ] We are allowed to use this challenge as part of the SecurityWeek CTF
++- [ ] We are allowed to use this challenge as part of the ACSC Bootcamp
+ 
+-If you have control over the allocated ports in the system (simple VPS with
+-nothing else running) then you can deploy it with podman (quadlets) with `make
+-deploy-quadlet` and a very big range
+ 
+-### Proof of Work
++Please let us know if we are allowed to use your challenge in a different event 
++that has not been mentioned above  
+ 
+-Consider adding proof of work (see `addon-proof-of-work`), just call it at the
+-start of `entrypoint.sh` and exit if non-zero status is returned.
++- [ ] I would like to be asked whether my challenge may be used in a CTF not mentioned above
++- [ ] I do not want my challenge to be used in a CTF not mentioned above
++- [ ] I don't really care, please just use it and mention me as author

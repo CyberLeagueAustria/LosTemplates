@@ -10,3 +10,15 @@ index b9f0ece..889a977 100644
              (writeShellScriptBin "docker" ''
                exec podman "$@"
              '')
+diff --git a/flake.nix b/flake.nix
+index b9f0ece..889a977 100644
+--- a/flake.nix
++++ b/flake.nix
+@@ -42,6 +42,7 @@
+             coreutils
+             bash
+             patched_podman
++            yq
+             (writeShellScriptBin "docker" ''
+               exec podman "$@"
+             '')

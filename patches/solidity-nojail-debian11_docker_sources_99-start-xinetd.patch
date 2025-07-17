@@ -16,3 +16,12 @@ index 0000000..d6fdc08
 +#!/bin/bash
 +
 +xinetd -filelog /var/log/ctf/xinetd.log
+diff --git a/solidity-nojail-debian11/docker_sources/99-start-xinetd b/solidity-nojail-debian11/docker_sources/99-start-xinetd
+new file mode 100644
+index 0000000..d6fdc08
+--- /dev/null
++++ b/solidity-nojail-debian11/docker_sources/99-start-xinetd
+@@ -0,0 +1,3 @@
++#!/bin/bash
++
++xinetd -filelog /var/log/ctf/xinetd.log
