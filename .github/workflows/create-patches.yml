@@ -1,0 +1,43 @@
+name: Create Patches
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  generate-patches:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+
+      - name: Install build dependencies
+        run: sudo apt-get update && sudo apt-get install -y make
+
+      - name: Run make create-patch
+        run: make create-patch
+
+      - name: Commit and push patch files
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+          if [ -n "$(git status --porcelain patches/)" ]; then
+            git add patches/
+            git commit -m "chore: update patches from latest commit [skip ci]"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          else
+            echo "No changes in patches/ to commit."
+          fi
+        env:
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+
+      - name: Upload patch files as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: split-patches
+          path: patches/
