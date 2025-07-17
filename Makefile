@@ -21,8 +21,9 @@ versions:
 
 create-patch:
 	@mkdir -p patches
-	@echo -e "\e[1;34m[+] Creating and splitting patch from latest commit (excluding patches/)...\e[0m"
-	@git diff HEAD^ HEAD -- . ':(exclude)patches/' | awk '\
+	@echo -e "\e[1;34m[+] Creating and splitting patch from branch 'cla' against 'main' (excluding patches/)...\e[0m"
+	@git fetch origin main >/dev/null 2>&1
+	@git diff origin/main...HEAD -- . ':(exclude)patches/' | awk '\
 		/^diff --git a\// { \
 			if (out) close(out); \
 			fname = $$3; \
@@ -32,7 +33,7 @@ create-patch:
 		} \
 		{ if (out) print >> out } \
 	'
-	@echo -e "\e[1;32m[+] Individual patch files saved in patches/\e[0m"
+	@echo -e "\e[1;32m[+] Patch files saved to ./patches/\e[0m"
 
 PATCH:=./name.patch
 patch:
