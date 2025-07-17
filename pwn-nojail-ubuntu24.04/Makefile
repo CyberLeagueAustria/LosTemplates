@@ -23,7 +23,7 @@ export AUTHOR   := $(shell yq -o yaml ".author.name" Manifest.yaml)
 export CATEGORY := $(shell yq -o yaml ".category" Manifest.yaml)
 export FLAG     := $(shell cat challenge/flag.txt)
 export FAKE_FLAG := $(shell cat dist/flag.txt)
-export TAGS      := $(shell yq -o yaml ".tags" Manifest.yaml)
+export TAGS      := $(shell yq -o=tsv '.tags | join(",")' Manifest.yaml)
 
 ############################
 # Deployment Configuration #
