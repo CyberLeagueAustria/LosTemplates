@@ -31,7 +31,7 @@ create-patch:
 			gsub(/\//, "_", fname); \
 			out = "patches/" fname ".patch"; \
 		} \
-		{ if (out) print >> out } \
+		{ if (out) print > out } \
 	'
 	@echo -e "\e[1;32m[+] Patch files saved to ./patches/\e[0m"
 
