@@ -23,7 +23,7 @@ create-patch:
 	@mkdir -p patches
 	@echo -e "\e[1;34m[+] Creating and splitting patch from branch 'cla' against 'main' (excluding patches/)...\e[0m"
 	@git fetch origin main >/dev/null 2>&1
-	@git diff origin/main...HEAD -- . ':(exclude)patches/' | awk '\
+	@git diff origin/main...origin/cla -- . ':(exclude)patches/' | awk '\
 		/^diff --git a\// { \
 			if (out) close(out); \
 			fname = $$3; \
