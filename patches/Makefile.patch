@@ -1,5 +1,5 @@
 diff --git a/Makefile b/Makefile
-index e504646..4468b97 100644
+index e504646..f0e15dc 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -19,6 +19,22 @@ versions:
@@ -10,7 +10,7 @@ index e504646..4468b97 100644
 +	@mkdir -p patches
 +	@echo -e "\e[1;34m[+] Creating and splitting patch from branch 'cla' against 'main' (excluding patches/)...\e[0m"
 +	@git fetch origin main >/dev/null 2>&1
-+	@git diff origin/main...HEAD -- . ':(exclude)patches/' | awk '\
++	@git diff origin/main...origin/cla -- . ':(exclude)patches/' | awk '\
 +		/^diff --git a\// { \
 +			if (out) close(out); \
 +			fname = $$3; \
